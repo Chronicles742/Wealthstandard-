@@ -1,0 +1,11 @@
+wealth-standard/
+├── index.html          (Home page)
+├── lessons.html        (List of all 13 lessons)
+├── lesson.html         (Individual lesson viewer)
+├── quiz.html           (Quiz page)
+├── css/
+│   └── style.css
+├── js/
+│   ├── data.js         (Your lesson content)
+│   └── app.js          (Interactive logic)
+└── README.md

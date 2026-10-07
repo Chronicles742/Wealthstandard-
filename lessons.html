@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Lessons — Wealth Standard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>💰 Wealth Standard</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="quiz.html">Quiz</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2 style="color:#0d3b66; margin-bottom:0.5rem;">All 13 Lessons</h2>
+    <p style="color:#666; margin-bottom:2rem;">Click any lesson to start learning.</p>
+    <div class="lesson-grid" id="allLessons"></div>
+  </div>
+
+  <footer>
+    © 2025 Wealth Standard — Financial Literacy for Africa
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script>
+    const grid = document.getElementById('allLessons');
+    lessons.forEach(lesson => {
+      grid.innerHTML += `
+        <div class="lesson-card" onclick="location.href='lesson.html?id=${lesson.id}'">
+          <span class="lesson-number">${lesson.id}</span>
+          <h3>${lesson.title}</h3>
+          <p>${lesson.description}</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

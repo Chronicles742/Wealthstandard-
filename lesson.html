@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson — Wealth Standard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>💰 Wealth Standard</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="quiz.html">Quiz</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="quiz-box" id="lessonBox"></div>
+  </div>
+
+  <footer>
+    © 2025 Wealth Standard — Financial Literacy for Africa
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const lesson = lessons.find(l => l.id === id);
+    const box = document.getElementById('lessonBox');
+
+    if (!lesson) {
+      box.innerHTML = '<h2>Lesson not found</h2><p><a href="lessons.html">Back to lessons</a></p>';
+    } else {
+      box.innerHTML = `
+        <span class="lesson-number">${lesson.id}</span>
+        <h2 style="color:#0d3b66; margin:1rem 0;">${lesson.title}</h2>
+        <p style="font-size:1.1rem; color:#333; margin-bottom:1.5rem;">${lesson.content}</p>
+        <a href="quiz.html?id=${lesson.id}" class="btn">Take Quiz →</a>
+        <a href="lessons.html" style="margin-left:1rem; color:#0d3b66;">← Back to lessons</a>
+      `;
+    }
+  </script>
+</body>
+</html>

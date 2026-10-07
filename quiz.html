@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz — Wealth Standard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>💰 Wealth Standard</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="quiz.html">Quiz</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="quiz-box" id="quizBox"></div>
+  </div>
+
+  <footer>
+    © 2025 Wealth Standard — Financial Literacy for Africa
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id')) || 6; // default to lesson 6 quiz
+    const quiz = quizzes[id];
+    const box = document.getElementById('quizBox');
+
+    if (!quiz) {
+      box.innerHTML = `
+        <h2 style="color:#0d3b66;">Quiz coming soon</h2>
+        <p>Quizzes are available for lessons 1 and 6 for now. More coming!</p>
+        <a href="lessons.html" class="btn">Back to Lessons</a>
+      `;
+    } else {
+      box.innerHTML = `
+        <h2 style="color:#0d3b66; margin-bottom:1rem;">Quick Quiz</h2>
+        <p style="font-size:1.1rem; margin-bottom:1.5rem;">${quiz.question}</p>
+        <div id="options"></div>
+        <div id="feedback"></div>
+      `;
+
+      const optionsDiv = document.getElementById('options');
+      const feedbackDiv = document.getElementById('feedback');
+
+      quiz.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (i === quiz.correct) {
+            btn.classList.add('correct');
+            feedbackDiv.className = 'feedback success';
+            feedbackDiv.textContent = '✅ Correct! ' + quiz.explanation;
+          } else {
+            btn.classList.add('wrong');
+            feedbackDiv.className = 'feedback error';
+            feedbackDiv.textContent = '❌ Not quite. ' + quiz.explanation;
+          }
+          // Disable all options
+          document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+  </script>
+</body>
+</html>
